@@ -12,6 +12,16 @@ const Rating = ({
 
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
 
+  const handleSubmit = () => {
+    if (rating) setSubmitted(true);
+  };
+
+  const closeModal = () => {
+    setSubmitted(false);
+    setRating(0);
+    setHover(0);
+  };
+
   return (
     <div className="rating-container">
       <h2>{heading}</h2>
@@ -30,6 +40,26 @@ const Rating = ({
         ))}
       </div>
       {rating > 0 && <p className="feedback">{feedbackMessages[rating - 1]}</p>}
+
+      {/* Button */}
+      <button className="submit-btn" onClick={handleSubmit} disabled={!rating}>
+        Submit
+      </button>
+
+      {/* Modal */}
+      {submitted && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Thank You</h2>
+            <p>
+              You rated {rating} star{rating > 1 ? "s" : ""}
+            </p>
+            <button className="close-btn" onClick={closeModal}>
+              close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

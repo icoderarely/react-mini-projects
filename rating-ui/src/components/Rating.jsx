@@ -1,9 +1,9 @@
 import Stars from "./Stars";
 
-const Rating = () => {
+const Rating = ({ heading = "Rate your experience!" }) => {
   return (
     <div className="rating-container">
-      <h2>Rate your experience!</h2>
+      <h2>{heading}</h2>
       <Stars />
     </div>
   );
